@@ -63,7 +63,7 @@ type Latencies struct {
 type KongLog struct {
 	Request   Request   `json:"request"`
 	Response  Response  `json:"response"`
-	Api       API       `json:"api"`
+	Api       API       `json:"service"`
 	Consumer  Consumer  `json:"consumer"`
 	Latencies Latencies `json:"latencies"`
 	ClientIp  string    `json:"client_ip"`
