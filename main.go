@@ -23,7 +23,7 @@ var (
 		}, []string{"method", "service_name", "status", "method_type", "consumer_name"})
 
 	cusumerRequestTimes = prometheus.NewSummaryVec(
-		prometheus.CounterOpts{
+		prometheus.SummaryOpts{
 			Name: "consumer_request_service_times",
 			Help: "Request completed time in milliseconds",
 		}, []string{"service_name",  "consumer_name"})
