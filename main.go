@@ -32,6 +32,7 @@ var (
 func init() {
 	prometheus.MustRegister(totalRequest)
 	prometheus.MustRegister(responseTimeInMs)
+	prometheus.MustRegister(cusumerRequestTimes)
 }
 
 type KongMetrics struct {
