@@ -21,6 +21,12 @@ var (
 			Name: "http_response_time_milliseconds",
 			Help: "Request completed time in milliseconds",
 		}, []string{"method", "service_name", "status", "method_type", "consumer_name"})
+
+	cusumerRequestTimes = prometheus.NewSummaryVec(
+		prometheus.CounterOpts{
+			Name: "consumer_request_service_times",
+			Help: "Request completed time in milliseconds",
+		}, []string{"service_name",  "consumer_name"})
 )
 
 func init() {
@@ -94,7 +100,7 @@ func handleKong(w http.ResponseWriter, req *http.Request) {
 	consumer_name := kongLog.Consumer.Username
 	responseTimeInMs.With(prometheus.Labels{"method": method, "service_name": module, "status": status, "method_type": methodType, "consumer_name": consumer_name}).Observe(float64(kongLog.Latencies.Request))
 	totalRequest.With(prometheus.Labels{"status": status, "service_name": module})
-
+    cusumerRequestTimes.With(prometheus.Labels{"service_name":service_name,  "consumer_name":consumer_name})
 	return
 }
 
