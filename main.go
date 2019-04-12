@@ -20,7 +20,7 @@ var (
 		prometheus.SummaryOpts{
 			Name: "http_response_time_milliseconds",
 			Help: "Request completed time in milliseconds",
-		}, []string{"method", "module", "status", "method_type"})
+		}, []string{"method", "service_name", "status", "method_type", "consumer_name"})
 )
 
 func init() {
