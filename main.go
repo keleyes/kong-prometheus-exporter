@@ -14,7 +14,7 @@ var (
 		prometheus.CounterOpts{
 			Name: "http_total_request_size",
 			Help: "total http request size",
-		}, []string{"status", "module"})
+		}, []string{"status", "service_name"})
 
 	responseTimeInMs = prometheus.NewSummaryVec(
 		prometheus.SummaryOpts{
