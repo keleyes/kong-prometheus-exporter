@@ -91,7 +91,8 @@ func handleKong(w http.ResponseWriter, req *http.Request) {
 	module := kongLog.Api.Name
 	status := fmt.Sprint(kongLog.Response.Status)
 	methodType := kongLog.Request.Method
-	responseTimeInMs.With(prometheus.Labels{"method": method, "module": module, "status": status, "method_type": methodType}).Observe(float64(kongLog.Latencies.Request))
+	consumer := konglog.Consumer.Username
+	responseTimeInMs.With(prometheus.Labels{"method": method, "service_name": module, "status": status, "method_type": methodType, "consumer": consumer}).Observe(float64(kongLog.Latencies.Request))
 	totalRequest.With(prometheus.Labels{"status": status, "module": module})
 
 	return
